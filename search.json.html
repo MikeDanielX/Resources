@@ -1,11 +1,7 @@
 ---
 layout: null
+permalink: /search.json
 ---
-
-{%- comment -%} This file is templated with Liquid, not pure JSON {%- endcomment -%}
-[
-  ...
-]
 
 [
   {% assign pages = site.pages | where_exp:"item", "item.path contains '_pages/'" %}
