@@ -1,0 +1,18 @@
+title: JavaScript Tutorial
+description: Learn JavaScript from scratch
+baseurl: "" 
+url: "https://MikeDanielX.github.io" # change to your GitHub Pages URL
+
+theme: minima # we'll customize it
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-toc
+  - jekyll-search # plugin to be included manually
+
+collections:
+  pages:
+    output: true
+    permalink: /:name/
