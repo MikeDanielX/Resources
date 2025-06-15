@@ -1,6 +1,12 @@
 ---
 layout: null
 ---
+
+{%- comment -%} This file is templated with Liquid, not pure JSON {%- endcomment -%}
+[
+  ...
+]
+
 [
   {% assign pages = site.pages | where_exp:"item", "item.path contains '_pages/'" %}
   {% for page in pages %}
