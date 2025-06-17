@@ -1,9 +1,10 @@
 title: JavaScript Tutorial
 description: Learn JavaScript from scratch
-baseurl: "/my-js-tutorial-site" 
-url: "https://mikedanielx.github.io" # change to your GitHub Pages URL
+baseurl: "" # Remove the baseurl for local development
+url: "https://mikedanielx.github.io"
 
-theme: minima # we'll customize it
+# Use minima theme but with custom styling
+theme: minima
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
@@ -11,7 +12,36 @@ plugins:
   - jekyll-paginate
   - jekyll-toc
 
+# Use older Sass converter to avoid protobuf issues
+sass:
+  style: compressed
+  sass_dir: _sass
+  
+# Use kramdown for markdown processing
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
 collections:
   pages:
     output: true
     permalink: /:name/
+
+# Pagination settings
+paginate: 5
+paginate_path: "/page:num/"
+
+# Exclude files from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md

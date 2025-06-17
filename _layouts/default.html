@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
   {% seo %}
 </head>
-<input type="text" id="search-input" placeholder="Search..." />
-<ul id="results-container"></ul>
-
-<script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script>
-<script>
-  SimpleJekyllSearch({
-    searchInput: document.getElementById('search-input'),
-    resultsContainer: document.getElementById('results-container'),
-    json: '/search.json'
-  });
-</script>
 <body>
+  <header class="site-header">
+    <div class="wrapper">
+      <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search tutorials..." />
+        <ul id="results-container"></ul>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
     {% include sidebar.html %}
     <main class="content">
@@ -25,5 +25,14 @@
       {{ content }}
     </main>
   </div>
+
+  <script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script>
+  <script>
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: '{{ "/search.json" | relative_url }}'
+    });
+  </script>
 </body>
 </html>

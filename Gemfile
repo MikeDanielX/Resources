@@ -1,13 +1,19 @@
 source "https://rubygems.org"
 
-# Specify the Jekyll version. ~> 4.0 means 4.x.x, but not 5.0
+# Use the current Ruby version
+ruby "~> 3.4.0"
+
+# Specify the Jekyll version
 gem "jekyll", "~> 4.3"
 
-# Essential for 'jekyll serve' on Ruby 3.0+ (Windows often needs this)
+# Essential for 'jekyll serve' on Ruby 3.0+
 gem "webrick"
 
-# Use sassc instead of sass-embedded to avoid protobuf issues
-gem "sassc", "~> 2.4"
+# Add logger to silence the warning
+gem "logger"
+
+# Use an older version of jekyll-sass-converter that doesn't depend on sass-embedded
+gem "jekyll-sass-converter", "~> 2.2"
 
 # List your plugins here, inside a group for Jekyll to pick them up
 group :jekyll_plugins do
@@ -16,5 +22,6 @@ group :jekyll_plugins do
   gem "jekyll-sitemap"
   gem "jekyll-paginate"
   gem "jekyll-toc"
-  gem "minima", "~> 2.5" # Or "~> 3.0" if you want the newer Minima version
+  # Use a simpler theme approach
+  gem "minima", "~> 2.5"
 end
