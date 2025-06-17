@@ -1,6 +1,6 @@
 title: JavaScript Tutorial
 description: Learn JavaScript from scratch
-baseurl: "" 
+baseurl: "/my-js-tutorial-site" 
 url: "https://mikedanielx.github.io" # change to your GitHub Pages URL
 
 theme: minima # we'll customize it
