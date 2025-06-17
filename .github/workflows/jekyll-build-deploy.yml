@@ -16,11 +16,15 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4.0' # Keep this as '3.4.0'
+          ruby-version: '3.4.0' # Keep this
 
-      # --- ADD THIS NEW STEP ---
-      - name: Bundle Install
-        run: bundle install
+      - name: Bundle Install (Force Rebuild)
+        run: bundle config set --local build.sass-embedded "--enable-local-binaries --disable-install-bundled-compiler" && bundle install --jobs 4 --retry 3
+        # The above line tells Bundler to install the sass-embedded gem,
+        # but to ensure it uses a local compiler rather than potentially
+        # trying to download a pre-built one that might conflict.
+        # The `jobs` and `retry` flags are good practice for CI.
+
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
