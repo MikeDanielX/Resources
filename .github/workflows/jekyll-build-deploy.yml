@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # This is a Linux machine
 
     steps:
       - name: Checkout code
@@ -18,37 +18,19 @@ jobs:
         with:
           ruby-version: '3.4.0'
 
-      - name: Install build dependencies and Protocol Buffers library
-        # Install compilers (build-essential) AND the Protocol Buffers development library (libprotobuf-dev)
-        # to ensure google-protobuf can compile its native extension correctly.
+      - name: Install build tools and Protocol Buffers libraries
+        # This command installs the necessary software for building gems from scratch.
         run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential libprotobuf-dev
+          sudo apt-get update # Get the latest info on available software
+          sudo apt-get install -y build-essential libprotobuf-dev protobuf-compiler # Install the tools
 
-      - name: Verify libprotobuf-dev installation (DEBUGGING)
-        # This step is for debugging to confirm libprotobuf-dev is actually installed.
-        run: dpkg -s libprotobuf-dev || echo "libprotobuf-dev not found, check previous step!"
-
-      - name: Clean and Bundle Install (Force Native Compilation)
+      - name: Clean and Reinstall Ruby Gems
+        # This step forces all Ruby gems, especially google-protobuf, to be rebuilt.
         run: |
-          # Remove any previous bundle installation to ensure a completely fresh start.
-          rm -rf vendor/bundle || true
-
-          # Configure sass-embedded to not use its bundled compiler,
-          # as this can sometimes cause issues with its protobuf dependency.
-          bundle config set --local build.sass-embedded "--disable-install-bundled-compiler"
-
-          # Explicitly tell google-protobuf to use system libraries for compilation.
-          # This, combined with `libprotobuf-dev` above, should ensure a correct build.
-          bundle config set --local build.google-protobuf "--with-system-libs"
-
-          # Perform a fresh bundle install.
-          # --full-index: Ensures Bundler checks the latest gem info.
-          # --jobs 4 --retry 3: For faster and more robust installation.
-          # --redownload: This is the correct, modern equivalent of `--force`.
-          #               It crucially tells Bundler to re-download and re-install/re-compile all gems,
-          #               even if they appear to be present or cached. This is vital for native extensions.
-          bundle install --full-index --jobs 4 --retry 3 --redownload
+          rm -rf vendor/bundle || true # Remove old Ruby gems to ensure a fresh start
+          bundle config set --local build.sass-embedded "--disable-install-bundled-compiler" # Specific setting for sass-embedded
+          bundle config set --local build.google-protobuf "--with-system-libs" # Tell google-protobuf to use the system libraries we just installed
+          bundle install --full-index --jobs 4 --retry 3 --redownload # Install all gems, forcing a fresh download and build
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
