@@ -3,7 +3,7 @@ name: Build and Deploy Jekyll Site
 on:
   push:
     branches:
-      - main # Or your main branch name, e.g., master
+      - main
 
 jobs:
   build-and-deploy:
@@ -16,20 +16,17 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4.0' # Use a Ruby version compatible with Jekyll 4.x and your Gemfile
-          bundler-cache: true # Installs gems from Gemfile.lock
+          ruby-version: '3.4.0' # Keep this as '3.4.0'
+
+      # --- ADD THIS NEW STEP ---
+      - name: Bundle Install
+        run: bundle install
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4 # Action for deploying to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site # The directory Jekyll builds your site into
-          # If you are deploying to a project page (username.github.io/repo-name),
-          # you might need to adjust publish_branch: gh-pages
-          # If it's a user/organization page (username.github.io), publish_branch: main is usually correct
-          # For typical user/organization pages, publish_branch defaults to gh-pages if not set,
-          # but often main is used as the publish branch in repository settings.
-          # Check your GitHub Pages settings to confirm the publish branch.
+          publish_dir: ./_site
