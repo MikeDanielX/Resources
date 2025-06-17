@@ -16,15 +16,25 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4.0' # Keep this
+          ruby-version: '3.4.0'
 
-      - name: Bundle Install (Force Rebuild)
-        run: bundle config set --local build.sass-embedded "--enable-local-binaries --disable-install-bundled-compiler" && bundle install --jobs 4 --retry 3
-        # The above line tells Bundler to install the sass-embedded gem,
-        # but to ensure it uses a local compiler rather than potentially
-        # trying to download a pre-built one that might conflict.
-        # The `jobs` and `retry` flags are good practice for CI.
+      - name: Install build dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+        # This ensures compilers and development headers are available for native extensions.
 
+      - name: Clean RubyGems cache and installed gems (aggressive clean)
+        run: |
+          gem pristine --all # Rebuilds all default and installed gems from their original state
+          rm -rf vendor/bundle || true # Remove existing bundled gems if any
+          bundle clean --force # Clean up unused gems from previous installations
+
+      - name: Bundle Install (Force Rebuild All Gems)
+        run: |
+          bundle config set --local build.sass-embedded "--disable-install-bundled-compiler"
+          bundle config set --local build.google-protobuf "--disable-install-bundled-compiler"
+          bundle install --full-index --jobs 4 --retry 3 --force
+          # The --force flag here is on bundle install itself, which is more aggressive
+          # and should compel ALL gems, including native extensions, to be re-installed/re-compiled.
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
