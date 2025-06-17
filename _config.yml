@@ -10,7 +10,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-toc
-  - jekyll-search # plugin to be included manually
 
 collections:
   pages:

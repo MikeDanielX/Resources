@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Variables in JavaScript</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Variables in JavaScript | JavaScript Tutorial</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Variables in JavaScript" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Variables" />
+<meta property="og:description" content="Variables" />
+<link rel="canonical" href="https://mikedanielx.github.io/variables/" />
+<meta property="og:url" content="https://mikedanielx.github.io/variables/" />
+<meta property="og:site_name" content="JavaScript Tutorial" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-17T18:51:07+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Variables in JavaScript" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-06-17T18:51:07+01:00","datePublished":"2025-06-17T18:51:07+01:00","description":"Variables","headline":"Variables in JavaScript","mainEntityOfPage":{"@type":"WebPage","@id":"https://mikedanielx.github.io/variables/"},"url":"https://mikedanielx.github.io/variables/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<input type="text" id="search-input" placeholder="Search..." />
+<ul id="results-container"></ul>
+
+<script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script>
+<script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('results-container'),
+    json: '/search.json'
+  });
+</script>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+  <ul>
+    <li><a href="/variables/">Variables</a></li>
+    <!-- Add more topics later -->
+  </ul>
+</nav>
+
+    <main class="content">
+      <h1>Variables in JavaScript</h1>
+      <!-- Your original content goes here -->
+<h1 id="variables">Variables</h1>
+
+<p>Most of the time, a JavaScript application needs to work with information. Here are two examples:</p>
+<ol>
+  <li>An online shop – the information might include goods being sold and a shopping cart.</li>
+  <li>A chat application – the information might include users, messages, and much more.</li>
+</ol>
+
+<p>Variables are used to store this information.</p>
+
+<h2 id="a-variable">A variable</h2>
+
+<p>A <a href="https://en.wikipedia.org/wiki/Variable_(computer_science)">variable</a> is a “named storage” for data. We can use variables to store goodies, visitors, and other data.</p>
+
+<p>To create a variable in JavaScript, use the <code class="language-plaintext highlighter-rouge">let</code> keyword.</p>
+
+<p>The statement below creates (in other words: <em>declares</em>) a variable with the name “message”:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">message</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Now, we can put some data into it by using the assignment operator <code class="language-plaintext highlighter-rouge">=</code>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">message</span><span class="p">;</span>
+
+<span class="o">*!*</span>
+<span class="nx">message</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Hello</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// store the string 'Hello' in the variable named message</span>
+<span class="o">*</span><span class="sr">/!</span><span class="err">*
+</span></code></pre></div></div>
+
+<p>The string is now saved into the memory area associated with the variable. We can access it using the variable name:</p>
+
+<p>```js run
+let message;
+message = ‘Hello!’;</p>
+
+<p><em>!</em>
+alert(message); // shows the variable content
+<em>/!</em></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+To be concise, we can combine the variable declaration and assignment into a single line:
+
+```js run
+let message = 'Hello!'; // define the variable and assign the value
+
+alert(message); // Hello!
+</code></pre></div></div>
+
+<p>We can also declare multiple variables in one line:</p>
+
+<p>```js no-beautify
+let user = ‘John’, age = 25, message = ‘Hello’;</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+That might seem shorter, but we don't recommend it. For the sake of better readability, please use a single line per variable.
+
+The multiline variant is a bit longer, but easier to read:
+
+```js
+let user = 'John';
+let age = 25;
+let message = 'Hello';
+</code></pre></div></div>
+
+<p>Some people also define multiple variables in this multiline style:</p>
+
+<p>```js no-beautify
+let user = ‘John’,
+  age = 25,
+  message = ‘Hello’;</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+...Or even in the "comma-first" style:
+
+```js no-beautify
+let user = 'John'
+  , age = 25
+  , message = 'Hello';
+</code></pre></div></div>
+
+<p>Technically, all these variants do the same thing. So, it’s a matter of personal taste and aesthetics.</p>
+
+<p>````smart header=”<code class="language-plaintext highlighter-rouge">var</code> instead of <code class="language-plaintext highlighter-rouge">let</code>”
+In older scripts, you may also find another keyword: <code class="language-plaintext highlighter-rouge">var</code> instead of <code class="language-plaintext highlighter-rouge">let</code>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">*!*</span><span class="kd">var</span><span class="o">*</span><span class="sr">/!* message = 'Hello'</span><span class="err">;
+</span></code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">var</code> keyword is <em>almost</em> the same as <code class="language-plaintext highlighter-rouge">let</code>. It also declares a variable but in a slightly different, “old-school” way.</p>
+
+<p>There are subtle differences between <code class="language-plaintext highlighter-rouge">let</code> and <code class="language-plaintext highlighter-rouge">var</code>, but they do not matter to us yet. We’ll cover them in detail in the chapter <info:var>.</info:var></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+## A real-life analogy
+
+We can easily grasp the concept of a "variable" if we imagine it as a "box" for data, with a uniquely-named sticker on it.
+
+For instance, the variable `message` can be imagined as a box labelled `"message"` with the value `"Hello!"` in it:
+
+![](variable.svg)
+
+We can put any value in the box.
+
+We can also change it as many times as we want:
+
+```js run
+let message;
+
+message = 'Hello!';
+
+message = 'World!'; // value changed
+
+alert(message);
+```
+
+When the value is changed, the old data is removed from the variable:
+
+![](variable-change.svg)
+
+We can also declare two variables and copy data from one into the other.
+
+```js run
+let hello = 'Hello world!';
+
+let message;
+
+*!*
+// copy 'Hello world' from hello into message
+message = hello;
+*/!*
+
+// now two variables hold the same data
+alert(hello); // Hello world!
+alert(message); // Hello world!
+```
+
+````warn header="Declaring twice triggers an error"
+A variable should be declared only once.
+
+A repeated declaration of the same variable is an error:
+
+```js run
+let message = "This";
+
+// repeated 'let' leads to an error
+let message = "That"; // SyntaxError: 'message' has already been declared
+```
+So, we should declare a variable once and then refer to it without `let`.
+</code></pre></div></div>
+
+<p>```smart header=”Functional languages”
+It’s interesting to note that there exist so-called <a href="https://en.wikipedia.org/wiki/Purely_functional_programming">pure functional</a> programming languages, such as <a href="https://en.wikipedia.org/wiki/Haskell">Haskell</a>, that forbid changing variable values.</p>
+
+<p>In such languages, once the value is stored “in the box”, it’s there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can’t reuse the old one.</p>
+
+<p>Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+## Variable naming [#variable-naming]
+
+There are two limitations on variable names in JavaScript:
+
+1. The name must contain only letters, digits, or the symbols `$` and `_`.
+2. The first character must not be a digit.
+
+Examples of valid names:
+
+```js
+let userName;
+let test123;
+</code></pre></div></div>
+
+<p>When the name contains multiple words, <a href="https://en.wikipedia.org/wiki/CamelCase">camelCase</a> is commonly used. That is: words go one after another, each word except first starting with a capital letter: <code class="language-plaintext highlighter-rouge">myVeryLongName</code>.</p>
+
+<p>What’s interesting – the dollar sign <code class="language-plaintext highlighter-rouge">'$'</code> and the underscore <code class="language-plaintext highlighter-rouge">'_'</code> can also be used in names. They are regular symbols, just like letters, without any special meaning.</p>
+
+<p>These names are valid:</p>
+
+<p>```js run untrusted
+let $ = 1; // declared a variable with the name “$”
+let _ = 2; // and now a variable with the name “_”</p>
+
+<p>alert($ + _); // 3</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+Examples of incorrect variable names:
+
+```js no-beautify
+let 1a; // cannot start with a digit
+
+let my-name; // hyphens '-' aren't allowed in the name
+</code></pre></div></div>
+
+<p>```smart header=”Case matters”
+Variables named <code class="language-plaintext highlighter-rouge">apple</code> and <code class="language-plaintext highlighter-rouge">APPLE</code> are two different variables.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+````smart header="Non-Latin letters are allowed, but not recommended"
+It is possible to use any language, including Cyrillic letters, Chinese logograms and so on, like this:
+
+```js
+let имя = '...';
+let 我 = '...';
+</code></pre></div></div>
+
+<p>Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we’re writing a small script, it may have a long life ahead. People from other countries may need to read it sometime.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+````warn header="Reserved names"
+There is a [list of reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), which cannot be used as variable names because they are used by the language itself.
+
+For example: `let`, `class`, `return`, and `function` are reserved.
+
+The code below gives a syntax error:
+
+```js run no-beautify
+let let = 5; // can't name a variable "let", error!
+let return = 5; // also can't name it "return", error!
+```
+</code></pre></div></div>
+
+<p>````warn header=”An assignment without <code class="language-plaintext highlighter-rouge">use strict</code>”</p>
+
+<p>Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using <code class="language-plaintext highlighter-rouge">let</code>. This still works now if we don’t put <code class="language-plaintext highlighter-rouge">use strict</code> in our scripts to maintain compatibility with old scripts.</p>
+
+<p>```js run no-strict
+// note: no “use strict” in this example</p>
+
+<p>num = 5; // the variable “num” is created if it didn’t exist</p>
+
+<p>alert(num); // 5</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+This is a bad practice and would cause an error in strict mode:
+
+```js
+"use strict";
+
+*!*
+num = 5; // error: num is not defined
+*/!*
+</code></pre></div></div>
+<pre><code class="language-`">
+## Constants
+
+To declare a constant (unchanging) variable, use `const` instead of `let`:
+
+```js
+const myBirthday = '18.04.1982';
+</code></pre>
+
+<p>Variables declared using <code class="language-plaintext highlighter-rouge">const</code> are called “constants”. They cannot be reassigned. An attempt to do so would cause an error:</p>
+
+<p>```js run
+const myBirthday = ‘18.04.1982’;</p>
+
+<p>myBirthday = ‘01.01.2001’; // error, can’t reassign the constant!</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and communicate that fact to everyone.
+
+### Uppercase constants
+
+There is a widespread practice to use constants as aliases for difficult-to-remember values that are known before execution.
+
+Such constants are named using capital letters and underscores.
+
+For instance, let's make constants for colors in so-called "web" (hexadecimal) format:
+
+```js run
+const COLOR_RED = "#F00";
+const COLOR_GREEN = "#0F0";
+const COLOR_BLUE = "#00F";
+const COLOR_ORANGE = "#FF7F00";
+
+// ...when we need to pick a color
+let color = COLOR_ORANGE;
+alert(color); // #FF7F00
+</code></pre></div></div>
+
+<p>Benefits:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">COLOR_ORANGE</code> is much easier to remember than <code class="language-plaintext highlighter-rouge">"#FF7F00"</code>.</li>
+  <li>It is much easier to mistype <code class="language-plaintext highlighter-rouge">"#FF7F00"</code> than <code class="language-plaintext highlighter-rouge">COLOR_ORANGE</code>.</li>
+  <li>When reading the code, <code class="language-plaintext highlighter-rouge">COLOR_ORANGE</code> is much more meaningful than <code class="language-plaintext highlighter-rouge">#FF7F00</code>.</li>
+</ul>
+
+<p>When should we use capitals for a constant and when should we name it normally? Let’s make that clear.</p>
+
+<p>Being a “constant” just means that a variable’s value never changes. But some constants are known before execution (like a hexadecimal value for red) and some constants are <em>calculated</em> in run-time, during the execution, but do not change after their initial assignment.</p>
+
+<p>For instance:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">pageLoadTime</span> <span class="o">=</span> <span class="cm">/* time taken by a webpage to load */</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The value of <code class="language-plaintext highlighter-rouge">pageLoadTime</code> is not known before the page load, so it’s named normally. But it’s still a constant because it doesn’t change after the assignment.</p>
+
+<p>In other words, capital-named constants are only used as aliases for “hard-coded” values.</p>
+
+<h2 id="name-things-right">Name things right</h2>
+
+<p>Talking about variables, there’s one more extremely important thing.</p>
+
+<p>A variable name should have a clean, obvious meaning, describing the data that it stores.</p>
+
+<p>Variable naming is one of the most important and complex skills in programming. A glance at variable names can reveal which code was written by a beginner versus an experienced developer.</p>
+
+<p>In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely separate from scratch. When we return to some code after doing something else for a while, it’s much easier to find information that is well-labelled. Or, in other words, when the variables have good names.</p>
+
+<p>Please spend time thinking about the right name for a variable before declaring it. Doing so will repay you handsomely.</p>
+
+<p>Some good-to-follow rules are:</p>
+
+<ul>
+  <li>Use human-readable names like <code class="language-plaintext highlighter-rouge">userName</code> or <code class="language-plaintext highlighter-rouge">shoppingCart</code>.</li>
+  <li>Stay away from abbreviations or short names like <code class="language-plaintext highlighter-rouge">a</code>, <code class="language-plaintext highlighter-rouge">b</code>, and <code class="language-plaintext highlighter-rouge">c</code>, unless you know what you’re doing.</li>
+  <li>Make names maximally descriptive and concise. Examples of bad names are <code class="language-plaintext highlighter-rouge">data</code> and <code class="language-plaintext highlighter-rouge">value</code>. Such names say nothing. It’s only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.</li>
+  <li>Agree on terms within your team and in your mind. If a site visitor is called a “user” then we should name related variables <code class="language-plaintext highlighter-rouge">currentUser</code> or <code class="language-plaintext highlighter-rouge">newUser</code> instead of <code class="language-plaintext highlighter-rouge">currentVisitor</code> or <code class="language-plaintext highlighter-rouge">newManInTown</code>.</li>
+</ul>
+
+<p>Sounds simple? Indeed it is, but creating descriptive and concise variable names in practice is not. Go for it.</p>
+
+<p>```smart header=”Reuse or create?”
+And the last note. There are some lazy programmers who, instead of declaring new variables, tend to reuse existing ones.</p>
+
+<p>As a result, their variables are like boxes into which people throw different things without changing their stickers. What’s inside the box now? Who knows? We need to come closer and check.</p>
+
+<p>Such programmers save a little bit on variable declaration but lose ten times more on debugging.</p>
+
+<p>An extra variable is good, not evil.</p>
+
+<p>Modern JavaScript minifiers and browsers optimize code well enough, so it won’t create performance issues. Using different variables for different values can even help the engine optimize your code.
+```</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>We can declare variables to store data by using the <code class="language-plaintext highlighter-rouge">var</code>, <code class="language-plaintext highlighter-rouge">let</code>, or <code class="language-plaintext highlighter-rouge">const</code> keywords.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">let</code> – is a modern variable declaration.</li>
+  <li><code class="language-plaintext highlighter-rouge">var</code> – is an old-school variable declaration. Normally we don’t use it at all, but we’ll cover subtle differences from <code class="language-plaintext highlighter-rouge">let</code> in the chapter <info:var>, just in case you need them.</info:var></li>
+  <li><code class="language-plaintext highlighter-rouge">const</code> – is like <code class="language-plaintext highlighter-rouge">let</code>, but the value of the variable can’t be changed.</li>
+</ul>
+
+<p>Variables should be named in a way that allows us to easily understand what’s inside them.</p>
+
+    </main>
+  </div>
+</body>
+</html>
